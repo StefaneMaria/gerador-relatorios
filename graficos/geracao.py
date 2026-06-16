@@ -2,7 +2,7 @@ import io
 
 import matplotlib.pyplot as plt
 
-from cores.paleta import CorHex
+from cores.paleta import CorHex, hex_para_rgb
 
 def _configurar_eixos(ax, ocultar_bordas=("top", "right")):
     ax.spines[list(ocultar_bordas)].set_visible(False)
@@ -20,4 +20,11 @@ def _salvar_figura_em_buffer(fig) -> io.BytesIO:
     plt.close(fig)
     buffer.seek(0)
     return buffer
+
+def _classificar_cor_barra(valor: float, media_esperada: float) -> tuple:
+    if valor >= media_esperada * 1.1:
+        return hex_para_rgb(CorHex.AMARELO_SOLAR)
+    if valor >= media_esperada * 0.7:
+        return hex_para_rgb(CorHex.BARRA_PADRAO)
+    return hex_para_rgb(CorHex.CINZA_MEDIO)
     
