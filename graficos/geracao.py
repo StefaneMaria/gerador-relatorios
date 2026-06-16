@@ -94,4 +94,13 @@ def gerar_grafico_historico(labels: List[str], valores: List[float]) -> io.Bytes
     
     _destacar_ultimo_mes(barras)
     _adicionar_rotulos_barras(ax, barras, valores)
+    
+    ax.set_xticks(posicoes)
+    ax.set_xticklabels(labels, fontsize=8, color=CorHex.AZUL_ESCURO)
+    ax.set_ylabel("kWh", fontsize=8, color=CorHex.AZUL_ESCURO)
+    ax.tick_params(axis="y", labelsize=7, colors=CorHex.AZUL_ESCURO)
+    _configurar_eixos(ax)
+    
+    plt.tight_layout(pad=0.4)
+    return _salvar_figura_em_buffer(fig)
         
