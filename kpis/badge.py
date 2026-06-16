@@ -13,3 +13,12 @@ def cacular_ratio_performance(geracao_diaria: List[float], media_esperada_diaria
         return 1.0
     media_real = sum(geracao_diaria) / dias
     return media_real / media_esperada_diaria
+
+def gerar_mensagem_badge(geracao_diaria: List[float], media_esperada_diaria: float) -> str:
+    ratio = cacular_ratio_performance(geracao_diaria, media_esperada_diaria)
+    
+    if ratio < LIMITE_INFERIOR_PERFORMANCE:
+        return "🌧️  Período chuvoso — comportamento esperado, fique tranquilo!"
+    if ratio > LIMITE_SUPERIOR_PERFORMANCE:
+        return "🚀  Geração de vento e popa! Sistema acima da média."
+    return "✅  Geração dentro do esperado — tudo certo!"
